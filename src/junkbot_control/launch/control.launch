@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+
+  <rosparam command="load" file="$(find rpv1_control)/config/control.yaml" />
+
+   <node name="base_controller_spawner" pkg="controller_manager" type="spawner"	args="rpv1_joint_publisher rpv1_velocity_controller --shutdown-timeout 1"/>
+
+   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    	<rosparam command="load" file="$(find rpv1_control)/config/localization.yaml" />
+  </node>
+
+   <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <param name="output_frame" value="odom"/>
+    <param name="freq" value="30.0"/>
+    <param name="sensor_timeout" value="1.0"/>
+    <param name="odom_used" value="true"/>
+    <param name="imu_used" value="true"/>
+    <param name="vo_used" value="true"/>
+    <param name="debug" value="false"/>
+    <param name="self_diagnose" value="false"/>
+  </node>
+
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>
+
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    	<rosparam command="load" file="$(find rpv1_control)/config/twist_mux.yaml" />
+    		<remap from="cmd_vel_out" to="platform_control/cmd_vel"/>
+  </node>
+
+</launch>

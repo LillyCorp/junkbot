@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>rpv1_control</name>
+  <version>0.0.1</version>
+<license>BSD</license>
+  <description>
+    The rpv1_control package. This is in experimental mode.
+  </description>
+  <maintainer email="chris.vanorarobots@gmail.com">chris</maintainer>
+  
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>controller_manager</build_depend>
+  <run_depend>controller_manager</run_depend>
+</package>

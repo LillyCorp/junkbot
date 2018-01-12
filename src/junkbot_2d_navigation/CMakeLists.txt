@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(rpv1_2d_navigation)
+
+find_package(catkin REQUIRED COMPONENTS
+  amcl
+  base_local_planner
+  dwa_local_planner
+  frontier_exploration
+  gmapping
+  map_server
+  move_base
+  navfn
+  roslaunch
+)
+
+
+include_directories(
+# include
+  ${catkin_INCLUDE_DIRS}
+)
+
+

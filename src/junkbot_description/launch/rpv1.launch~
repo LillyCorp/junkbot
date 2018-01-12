@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<launch>
+
+ <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0  /map /odom 100" />
+  <arg name="startz" default="0.9" />
+  <arg name="urdf" default="$(find rpv1_description)/rpv1/urdf/rpv1.urdf.xacro" />
+
+   <arg name="config" default="base" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg urdf)" />
+
+  
+  
+  
+  
+
+
+  
+
+  
+
+<!-- Load RPV1 control information -->
+  <include file="$(find rpv1_control)/launch/control_rpv1.launch"/>
+	
+<arg name="joint_state_gui" default="false" />
+  <arg name="joint_state_rate" default="100" />
+
+  <param name="use_gui" value="$(arg joint_state_gui)"/>
+  <param name="rate" value="$(arg joint_state_rate)"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"></node>
+
+<!-- Spawn robot in gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+   args="-x -5 -y 0 -z $(arg startz) -unpause -urdf -param robot_description -model urdf" > </node>
+
+<!---add-depth-image-to-laser-scan for kinect -->
+<node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" > 
+  <remap from="image" to="/camera/depth/image_raw"/>
+  <remap from="scan" to="/scan" />
+</node>
+
+
+</launch>
+
