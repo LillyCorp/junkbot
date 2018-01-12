@@ -1,0 +1,15 @@
+
+ <launch>
+
+  <arg name="scan_topic"  default="scan" value="scan"/>
+  <arg name="base_frame"  default="base_link" value="base_link"/>
+  <arg name="odom_frame"  default="odom" value="odom" />
+
+  <!-- Gmapping -->
+  <arg name="custom_gmapping_launch_file" default="$(find tapbot_navigation)/launch/includes/gmapping.launch.xml"  param="$(arg scan_topic) $(arg base_link) $(arg odom_frame)"/>
+  <include file="$(arg custom_gmapping_launch_file)"/>
+
+  <!-- Move base -->
+  <include file="$(find tapbot_navigation)/launch/includes/move_base.launch.xml"/>
+</launch>
+

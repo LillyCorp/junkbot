@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<root>
+  <!-- 
+    These properties must be observed by any machine
+	translation and rotation of camera from the tabletop
+   -->
+	<property name="cam_px" value="-0.4" />
+	<property name="cam_py" value="1.0" />
+	<property name="cam_pz" value="0" />
+	<property name="cam_or" value="-1.57079632679" />
+	<property name="cam_op" value="0.4" />
+	<property name="cam_oy" value="0" />
+
+</root>

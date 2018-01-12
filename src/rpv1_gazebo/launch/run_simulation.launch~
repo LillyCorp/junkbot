@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Open the Gazebo world -->
+
+
+    <include file="$(find rpv1_gazebo)/launch/world-park.launch">
+      <arg name="gui" value="true" />
+      <arg name="simple_rviz" value="false" />
+    </include>
+
+    <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0  /map /odom 100" />
+
+    
+  
+</launch>

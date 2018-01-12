@@ -1,0 +1,1 @@
+export HUSKY_DESCRIPTION=$(catkin_find --without-underlays --first-only tapbot_description description/urdf/description.xacro 2>/dev/null)
